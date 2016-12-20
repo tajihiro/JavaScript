@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/css/bootstrap.min.css" />
+</head>
+<body ng-controller="IndexController">
+<div>AngularJS</div>
+{{3 * 5}}
+
+<div>{{msg}} {{name}}</div>
+
+<table class="table">
+    <thead>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Birth Place</th>
+    <th>Gender</th>
+    <th>Email</th>
+    </thead>
+    <tr ng-repeat="member in members">
+        <td>{{member.last_name}}</td>
+        <td>{{member.first_name}}</td>
+        <td>{{member.birth_place}}</td>
+        <td>{{member.gender}}</td>
+        <td>{{member.email}}</td>
+    </tr>
+</table>
+</body>
+</html>
