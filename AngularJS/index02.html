@@ -15,7 +15,8 @@
 <form>
     <label for="name">名前：</label>
     <input id="name" name="name" type="text" ng-model="Name">
-    <div>{{::Name}}さん</div>
+    <div>{{Name}}さん</div>
+    <div ng-bind=" Name + 'さん'"></div>
 </form>
 </body>
 </html>

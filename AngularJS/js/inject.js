@@ -2,6 +2,8 @@ var param = function ($scope, Members) {
     $scope.msg = 'こんにちは。';
     $scope.name = 'たぢさん。';
     $scope.members = Members();
+
+    $scope.url = 'http://www.whoocus.com/blog/';
 }
 
 angular.module('AngularApp', [])

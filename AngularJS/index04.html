@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+               $scope.favs = ['田島 啓之', '轟 啓介', '来留島 圭司', '小川 修平', '伊原 克将'];
+            }]);
+    </script>
+</head>
+<body ng-controller="IndexController">
+<div ng-pluralize count="favs.length" offset="2"
+     when="{
+        '0': '「いいね。」されてません。',
+        '1': '{{favs[0]}}さんが「いいね。」と言ってます。',
+        '2': '{{favs[0]}}さんと{{favs[1]}}さんが「いいね。」と言ってます。',
+        'one': '{{favs[0]}}さんと{{favs[1]}}さんと、他1名が「いいね。」と言ってます。',
+        'other': '{{favs[0]}}さんと{{favs[1]}}さんと、他{}名が「いいね。」と言ってます。',
+     }"></div>
+</body>
+</html>
