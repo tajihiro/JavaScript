@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", function () {
+                this.Name = "初期表示";
+            });
+    </script>
+</head>
+<body ng-controller="IndexController as ctl">
+<form>
+    <label for="name">名前：</label>
+    <input id="name" name="name" type="text" ng-model="ctl.Name">
+    <div>{{ctl.Name}}さん</div>
+</form>
+
+</body>
+</html>

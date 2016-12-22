@@ -1,10 +1,11 @@
+var param = function ($scope, Members) {
+    $scope.msg = 'こんにちは。';
+    $scope.name = 'たぢさん。';
+    $scope.members = Members();
+}
+
 angular.module('AngularApp', [])
-    .controller('IndexController', ['$scope','Members', function ($scope, Members){
-//  .controller('IndexController', function ($scope, Members){
-        $scope.msg = 'こんにちは。';
-        $scope.name = 'たぢさん。';
-        $scope.members = Members();
-    }])
+    .controller('IndexController', param)
     .value('Members', function () {
         return [
             {
@@ -34,6 +35,13 @@ angular.module('AngularApp', [])
                 birth_place: '東京',
                 gender: '男',
                 email: 'katsu@falcons.com',
+                passwd: '123'
+            },{
+                first_name: '圭司',
+                last_name: '来留島',
+                birth_place: '千葉',
+                gender: '男',
+                email: 'keiji@falcons.com',
                 passwd: '123'
             }];
     }
