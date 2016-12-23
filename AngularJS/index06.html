@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                $scope.greeting = "こんにちは。名無しさん。";
+
+                //イベント
+                $scope.onclick01 = function () {
+                    $scope.greeting = "こんにちは。" + $scope.Name + "さん。";
+                }
+            }]);
+    </script>
+
+</head>
+<body ng-controller="IndexController">
+<div>
+    <form>
+        <label for="name">名前：</label>
+        <input type="text" name="name" id="name" ng-model="Name" />
+        <button ng-click="onclick01()">送信</button>
+    </form>
+</div>
+<div>{{greeting}}</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                $scope.templates = [
+                    {title: 'exclution', url : 'templates/exclution.html'},
+                    {title: 'tempo', url : 'templates/tempo.html'}
+                ];
+            }]);
+    </script>
+
+</head>
+<body ng-controller="IndexController">
+<div>
+    <label for="temp">テンプレート：</label>
+    <select id="temp" name="temp" ng-model="template"
+            ng-options="t.url as t.title for t in templates">
+        <option value="">以下から選択してください。</option>
+    </select>
+</div>
+<div class="box" ng-include="template" onload="onload()"></div>
+</body>
+</html>
