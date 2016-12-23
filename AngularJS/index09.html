@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                $scope.outerclick = function ($event) {
+                    $scope.clientPointX = $event.clientX;
+                    $scope.clientPointY = $event.clientY;
+                    $scope.outerPointX = $event.offsetX;
+                    $scope.outerPointY = $event.offsetY;
+                };
+                $scope.innerclick = function ($event) {
+                    $event.stopPropagation();
+                    $scope.clientPointX = $event.clientX;
+                    $scope.clientPointY = $event.clientY;
+                    $scope.innerPointX = $event.offsetX;
+                    $scope.innerPointY = $event.offsetY;
+                };
+
+            }]);
+    </script>
+    <style type="text/css">
+        body{
+        }
+        .outer {
+            border: solid;
+            border-width: thin;
+            margin: 10px;
+            height: 200px;
+        }
+        .inner {
+            border: solid;
+            border-width: thin;
+            margin: 10px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+<body ng-controller="IndexController">
+<div class="outer" ng-click="outerclick($event)">
+    OUTER
+    <div class="inner" ng-click="innerclick($event)">
+        INNER
+    </div>
+</div>
+<div>CLIENT:{{clientPointX}} / {{clientPointY}}</div>
+<div>OUTER:{{outerPointX}} / {{outerPointY}}</div>
+<div>INNER:{{innerPointX}} / {{innerPointY}}</div>
+</body>
+</html>

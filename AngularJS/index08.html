@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                $scope.onkeydown = function ($event) {
+                    $scope.altKey = $event.altKey;
+                    $scope.shiftKey = $event.shiftKey;
+                    $scope.ctrlKey = $event.ctrlKey;
+                    $scope.which = $event.which;
+                };
+
+            }]);
+    </script>
+
+</head>
+<body ng-controller="IndexController">
+<div>
+    <form>
+        <label for="keyinput" >キー入力：</label>
+        <input type="text" id="keyinput" name="keyinput" ng-keydown="onkeydown($event)" />
+    </form>
+</div>
+<div ng-show="altKey">[ALT]:{{altKey}}</div>
+<div ng-show="shiftKey">[SHIFT]:{{shiftKey}}</div>
+<div ng-show="ctrlKey">[CTL]:{{ctrlKey}}</div>
+<div ng-show="which">[Key Code]:{{which}}</div>
+</body>
+</html>
