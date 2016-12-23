@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                $scope.show = true;
+            }]);
+    </script>
+</head>
+<body ng-controller="IndexController">
+<div>
+    <form>
+        <label for="showdetail">表示/非表示：</label>
+        <input type="checkbox" id="showdetail" ng-model="show" />
+    </form>
+</div>
+<p></p>
+<div id="detail" ng-show="show">
+    ドル・円は117円30銭台で静かな推移が続いている。<br>
+    米10年債利回りが2.55％台と前日比でやや上昇していることが、下支え要因となっている様子。<br>
+    クリスマス休暇入りや米国債券市場の短縮取引などが意識されて、積極的な売買は手控えられよう。<br>
+    ここまでのドル・円の取引レンジは117円30銭から117円63銭、ユーロ・円は122円59銭から122円75銭、ユーロ・ドルは1.0434ドルから1.0452ドルで推移している。
+</div>
+
+</body>
+</html>
