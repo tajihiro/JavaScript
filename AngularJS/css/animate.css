@@ -1,0 +1,23 @@
+.box{
+    list-style-type: none;
+    float: left;
+    margin: 10px;
+    padding: 5px;
+    border: solid 1px #000;
+    width: 100px;
+    height: 80px;
+}
+.box.ng-enter{
+    transition: all 800ms ease-in-out;
+    opacity: 0;
+}
+.box.ng-enter, ng-enter-active{
+    opacity: 1;
+}
+.box.ng-leave{
+    transition: all 800ms ease-in-out;
+    opacity: 1;
+}
+.box.ng-leave-active{
+    opacity: 0;
+}

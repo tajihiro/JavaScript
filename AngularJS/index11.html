@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.0/angular-animate.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',['ngAnimate'])
+            .controller("IndexController", ['$scope', function($scope) {
+               $scope.members = ['田島 啓之', '轟 啓介', '来留島 圭司', '小川 修平', '伊原 克将'];
+               var count = 0;
+
+               //イベント
+               $scope.oninsert = function () {
+                   $scope.members.push('Add' + count);
+                   count++;
+               };
+               $scope.ondelete = function () {
+                   $scope.members.pop();
+                   if(count > 0){
+                       count--;
+                   }
+               }
+            }]);
+    </script>
+    <link rel="stylesheet" href="css/animate.css">
+</head>
+<body ng-controller="IndexController">
+<div>
+    <button ng-click="oninsert()">追加</button>
+    <button ng-click="ondelete()">削除</button>
+</div>
+<ul>
+    <li class="box" ng-repeat="member in members">{{member}}</li>
+</ul>
+</body>
+</html>
