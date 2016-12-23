@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+                var img01 = "https://scontent.xx.fbcdn.net/v/t1.0-9/12439152_10207016993281591_6051830897647068399_n.jpg?oh=d4944646d3f54afca1dcd1197d0fb36d&oe=58E7BF01";
+                var img02 = "https://scontent.xx.fbcdn.net/v/t1.0-9/15327402_10209555152133976_4195161495232014642_n.jpg?oh=caddae14158ecfef7ff22f2b1068dbc6&oe=58E66CE6";
+                $scope.ImgSrc = img01;
+
+                //イベント
+                $scope.onmouseover = function () {
+                    $scope.ImgSrc = img02;
+                };
+                $scope.onmouseleave = function () {
+                    $scope.ImgSrc = img01;
+                };
+
+            }]);
+    </script>
+
+</head>
+<body ng-controller="IndexController">
+<div>
+    <img ng-src="{{ImgSrc}}" ng-mouseenter="onmouseover()" ng-mouseleave="onmouseleave()" width="400" height="400">
+</div>
+</body>
+</html>
