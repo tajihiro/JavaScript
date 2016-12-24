@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope','$http', function($scope, $http) {
+                $scope.Url = "http://www.whoocus.com/blog";
+
+               //通信処理
+               $scope.onclick = function () {
+                   $http.jsonp('http://b.hatena.ne.jp/entry/json/http://delete-all.hatenablog.com/entry/2016/12/23/190016',
+                       {params : {
+//                           callback : 'JSON_CALLBACK',
+//                           url : $scope.Url
+                            }
+                       }
+                   )
+                   .then(function successCallback(response) {
+//                       var comments = [];
+//                       $scope.count = data.count + '件';
+//                       angular.forEach(data.bookmarkers, function (value, index) {
+//                           if(value.comment !== ''){
+//                               comments.push(value.comment);
+//                           }
+//                       });
+//                       $scope.comments = comments;
+                       $scope.comments = ['通信成功'];
+                   }, function errorCallback(response) {
+                       $scope.count = '(ERROR)';
+                       $scope.comments = ['通信に失敗しました。[Connection Error]'];
+                   });
+//                   .success(function(data){
+//                       var comments = [];
+//                       $scope.count = data.count + '件';
+//                       angular.forEach(data.bookmarkers, function (value, index) {
+//                           if(value.comment !== ''){
+//                               comments.push(value.comment);
+//                           }
+//                       });
+//                       $scope.comments = comments;
+//                   })
+//                   .error(function (err) {
+//                       $scope.count = '(ERROR)';
+//                       $scope.comments = ['(通信に失敗しました。[Connection Error]'];
+//                   });
+               };
+            }]);
+    </script>
+</head>
+<body ng-controller="IndexController">
+<div>
+    <form>
+        <label for="name">URL：</label>
+        <input id="url" type="text" ng-model="Url">
+        <button ng-click="onclick()">検索</button>
+    </form>
+</div>
+<div>{{count}}</div>
+<ul>
+    <li ng-repeat="comment in comments track by $index">{{comment}}</li>
+</ul>
+</body>
+</html>
