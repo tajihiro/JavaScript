@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope', function($scope) {
+               //Chnage Event
+               $scope.changeHandler = function () {
+                   console.log("ChangeHandler!!");
+               };
+            }]);
+    </script>
+</head>
+<body ng-controller="IndexController">
+<div>
+    <form>
+        <input id="eventTest" type="text" ng-model="eventTest" ng-change="changeHandler()">
+        <select id="eventTest2" ng-model="eventTest2" ng-change="changeHandler()">
+            <option value="1">田島</option>
+            <option value="2">伊藤</option>
+            <option value="3">山田</option>
+        </select>
+    </form>
+</div>
+</body>
+</html>

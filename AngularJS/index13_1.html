@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',[])
+            .controller("IndexController", ['$scope','$http', function($scope, $http) {
+                $scope.Url = "http://www.whoocus.com/blog";
+            }]);
+    </script>
+</head>
+<body ng-controller="IndexController">
+<div>
+    <a href="index13_2.html">Link</a>
+</div>
+</body>
+</html>
