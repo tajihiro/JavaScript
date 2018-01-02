@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Stack Bar Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
+</head>
+<body>
+    <svg id="myGraph"></svg>
+
+<script type="text/javascript">
+var dataset = [
+        [
+            {year : 2014, p : 20}, {year : 2015, p : 18}, {year : 2016, p : 29}, {year : 2017, p : 17}
+        ],
+        [
+            {year : 2014, p : 30}, {year : 2015, p : 39}, {year : 2016, p : 18}, {year : 2017, p : 20}
+        ],
+        [
+            {year : 2014, p : 15}, {year : 2015, p : 21}, {year : 2016, p : 29}, {year : 2017, p : 25}
+        ]
+    ]
+    var barWidth = 20;
+    var step = barWidth + 10;
+    var offsetX = 10;
+    var color = ["yellow", "pink", "orange"];
+
+    var stack = d3.stack();
+                    // .y(function(data){
+                    //     return data.p;
+                    // });
+    
+    d3.select("#myGraph")
+            .selectAll("g");
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>D3 SVG Sample</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
+</head>    
+<body>
+    <svg width="500" height="300">
+        <line x1="10" y1="10" x2="140" y2="140" stroke="blue"></line>
+        <circle r="50" cx="200" cy="200" fill="red"></circle>
+    </svg>
+
+    <script type="text/javascript">
+        var data_values = [5,10,30,8,45,24,16,55,60];
+        d3.select("body")
+            .selectAll("p")
+            .data(data_values).enter()
+            .append("p")
+            .text(function(data){
+                return "こんにちは。たぢさん。[" + data +"]";
+            })
+            .style("font-size","12")
+            .style("color", "gray");
+
+        d3.select("svg")
+            .append("rect")
+            .attr("x","300px")
+            .attr("y","300px")
+            .attr("width","30px")
+            .attr("height","0px")
+            .style("fill", "yellow")
+            .transition()
+            .delay(1000)
+            .attr("y", "150px")
+            .attr("height","200px");
+    </script>
+</body>
+</html>

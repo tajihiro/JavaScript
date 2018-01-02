@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="AngularApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script type="text/javascript">
+        angular.module('AngularApp',['ngRoute'])
+            .config(function ($routeProvider) {
+                $routeProvider
+                    .when('/',
+                        {templateUrl: 'views/main.html',
+                         controller: 'MainController'})
+                    .when('/division/:division',
+                        {templateUrl: 'views/division.html',
+                         controller: 'DivisionController'})
+                    .otherwise(
+                        {redirectTo: '/'});
+            })
+            .controller("MainController", ['$scope', function($scope) {
+                $scope.msg = 'たぢさん。'
+            }])
+            .controller("DivisionController", ['$scope', '$routeParams', function($scope, $routeParams) {
+                $scope.division_name = $routeParams.division;
+            }]);
+    </script>
+
+</head>
+<body>
+<div>
+    <ul>
+        <li>
+            <a ng-href="#/main">メインページ</a>
+        </li>
+        <li>
+            <a ng-href="#/division/Gold">Gold</a>
+        </li>
+        <li>
+            <a ng-href="#/division/Silver">Silver</a>
+        </li>
+        <li>
+            <a ng-href="#/division/Bronze">Bronze</a>
+        </li>
+    </ul>
+</div>
+<div ng-view></div>
+</body>
+</html>
