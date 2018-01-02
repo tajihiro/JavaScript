@@ -1,0 +1,13 @@
+<div class="c1"></div>
+
+<script>
+    d3.selectAll("div.c1")
+        .append("svg")
+        .attr("width", 400)
+        .attr("height", 300)
+        .style("border", "1px solid gray")
+        .enter();
+
+
+    d3.csv("/data/data.csv", data => console.log(data));
+</script>
