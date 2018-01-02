@@ -1,13 +1,27 @@
-<div class="c1"></div>
 
 <script>
-    d3.selectAll("div.c1")
-        .append("svg")
-        .attr("width", 400)
-        .attr("height", 300)
-        .style("border", "1px solid gray")
-        .enter();
+    // d3.selectAll("div.c1")
+    //     .append("svg")
+    //     .attr("width", 400)
+    //     .attr("height", 300)
+    //     .style("border", "1px solid gray")
+    //     .enter();
 
 
-    d3.csv("/data/data.csv", data => console.log(data));
+    d3.csv("/data/data.csv", (error, data) => {
+        if(error){
+            console.log(error);
+        }else{
+            showData(data);
+        }
+    });
+    function showData(data){
+        d3.select("body")
+            .selectAll("div.family")
+            .data(data)
+            .enter()
+            .append("div")
+            .attr("class", "family")
+            .html(d => d.name + "("+ d.age + ")");
+    }
 </script>
