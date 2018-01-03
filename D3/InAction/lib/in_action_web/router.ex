@@ -18,6 +18,9 @@ defmodule InActionWeb.Router do
 
     get "/", PageController, :index
     get "/main", PageController, :main
+    get "/sample01", PageController, :sample01
+    get "/sample02", PageController, :sample02
+    get "/sample03", PageController, :sample03
   end
 
   # Other scopes may use custom stacks.

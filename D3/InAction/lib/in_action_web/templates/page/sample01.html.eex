@@ -1,0 +1,39 @@
+<svg width="600" height="600"></svg>
+
+<script>
+    d3.json("/data/tweets.json", (error, data) => {
+        if(error){
+            console.log(error);
+        }else{
+            handleTweet(data.tweets);
+        }
+    });
+    function handleTweet(data) {
+        data.forEach(d => {
+            // console.log("favorites:" + d.favorites);
+            // console.log("retweets:" + d.retweets);
+            d.impact = d.favorites.length + d.retweets.length;
+//            console.log("impact:" + d.impact)
+            d.tweetTime = new Date(d.timestamp);
+        })
+        var maxImpact = d3.max(data, d => d.impact);
+        var startEnd = d3.extent(data, d => d.tweetTime);
+        var timeRamp = d3.scaleTime().domain(startEnd).range([20, 480]);
+        var yScale = d3.scaleLinear().domain([0, maxImpact]).range([0, 460]);
+        var radiusScale = d3.scaleLinear().domain([0, maxImpact]).range([1, 20]);
+        var colorScale = d3.scaleLinear().domain([0, maxImpact]).range(["white","#5359ff"]);
+
+
+        d3.select("svg")
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("r", d => radiusScale(d.impact))
+            .attr("cx", d => timeRamp(d.tweetTime))
+            .attr("cy", d => 480 - yScale(d.impact))
+            .style("fill", d => colorScale(d.impact))
+            .style("stroke", "black")
+            .style("stroke-width", "1px");
+    }
+</script>
