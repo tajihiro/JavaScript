@@ -45,10 +45,16 @@
                  );
         tweetG.append("circle")
             .attr("r", d => radiusScale(d.impact))
-            .style("fill", d => colorScale(d.impact))
+            .style("fill", "#9f3076")
             .style("stroke", "black")
             .style("stroke-width", "1px");
         tweetG.append("text")
             .text(d => d.user + ":" + d.tweetTime.getHours());
+
+//        var filterdData = data.filter(d => d.impact > 0)
+//        d3.selectAll("circle")
+//            .data(filterdData, d => JSON.stringify(d))
+//            .exit()
+//            .remove();
     }
 </script>
