@@ -23,7 +23,6 @@
         var radiusScale = d3.scaleLinear().domain([0, maxImpact]).range([1, 20]);
         var colorScale = d3.scaleLinear().domain([0, maxImpact]).range(["white","#5359ff"]);
 
-
         d3.select("svg")
             .selectAll("circle")
             .data(data)
@@ -35,5 +34,21 @@
             .style("fill", d => colorScale(d.impact))
             .style("stroke", "black")
             .style("stroke-width", "1px");
+
+        var tweetG = d3.select("svg")
+            .selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("transform", d =>
+                "translate(" + timeRamp(d.tweetTime) + "," + (480 - yScale(d.impact)) + ")"
+                 );
+        tweetG.append("circle")
+            .attr("r", d => radiusScale(d.impact))
+            .style("fill", d => colorScale(d.impact))
+            .style("stroke", "black")
+            .style("stroke-width", "1px");
+        tweetG.append("text")
+            .text(d => d.user + ":" + d.tweetTime.getHours());
     }
 </script>
