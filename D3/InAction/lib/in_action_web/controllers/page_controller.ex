@@ -26,4 +26,28 @@ defmodule InActionWeb.PageController do
     render conn, "sample04.html"
   end
 
+  def sample05(conn, _params) do
+    render conn, "sample05.html"
+  end
+
+  def sample06(conn, _params) do
+    render conn, "sample06.html"
+  end
+
+  def sample07(conn, _params) do
+    render conn, "sample07.html"
+  end
+
+  def sample08(conn, _params) do
+    render conn, "sample08.html"
+  end
+
+  def sample09(conn, _params) do
+    render conn, "sample09.html"
+  end
+
+  def sample10(conn, _params) do
+    render conn, "sample10.html"
+  end
+
 end

@@ -1,36 +1,30 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+<div>
+  <%= link "sample01", to: page_path(@conn, :sample01) %>
 </div>
-
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
+<div>
+  <%= link "sample02", to: page_path(@conn, :sample02) %>
+</div>
+<div>
+  <%= link "sample03", to: page_path(@conn, :sample03) %>
+</div>
+<div>
+  <%= link "sample04", to: page_path(@conn, :sample04) %>
+</div>
+<div>
+  <%= link "sample05", to: page_path(@conn, :sample05) %>
+</div>
+<div>
+  <%= link "sample06", to: page_path(@conn, :sample06) %>
+</div>
+<div>
+  <%= link "sample07", to: page_path(@conn, :sample07) %>
+</div>
+<div>
+  <%= link "sample08", to: page_path(@conn, :sample08) %>
+</div>
+<div>
+  <%= link "sample09", to: page_path(@conn, :sample09) %>
+</div>
+<div>
+  <%= link "sample10", to: page_path(@conn, :sample10) %>
 </div>

@@ -1,0 +1,31 @@
+<svg width="400" height="500"></svg>
+
+<script>
+    d3.csv("/data/movies.csv", showStackChart);
+    function showStackChart(data){
+        var xScale = d3.scaleLinear().domain([1,8]).range([20, 470]);
+        var yScale = d3.scaleLinear().domain([-40,40]).range([480, 20]);
+
+        Object.keys(data[0]).forEach(key => {
+            if(key != "day"){
+                var movieArea = d3.area()
+//              var movieArea = d3.line()
+                    .x(d => xScale(d.day))
+                    .y0(d => yScale(d[key]))
+                    .y1(d => yScale(-d[key]))
+//                  .y(d => yScale(d[key]))
+                    .curve(d3.curveCardinal);
+                d3.select("svg")
+                    .append("path")
+                    .style("id", key + "Area")
+                    .attr("d", movieArea(data))
+                    .attr("fill", "#5359ff")
+                    .attr("stroke", "#5359ff")
+                    .attr("stroke-width", 2)
+                    .style("stroke-opacity", .75)
+                    .style("fill-opacity", .5);
+            };
+        });
+    }
+
+</script>
