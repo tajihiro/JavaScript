@@ -1,3 +1,36 @@
+
+<div id="viz">
+    <svg style="width: 500px;height: 500px;border: 1px lightgray solid;"></svg>
+</div>
+
+<div id="controls"/>
+
 <script>
-    
+    function createSoccerViz() {
+        d3.csv("/data/worldcup.csv", data => {overallTeamViz(data)});
+        console.log("createSoccerVis");
+    }
+
+    function overallTeamViz(data){
+        d3.select("svg")
+            .append("g")
+            .attr("id", "teamG")
+            .attr("transform", "translate(50,300)")
+            .selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("class", "overallG")
+            .attr("transform", (d, i) => "translate("+ (i * 50) + ", 0)");
+
+        var teamG = d3.selectAll("g.overallG");
+        teamG.append("circle")
+             .attr("r", 20);
+        teamG.append("text")
+             .attr("y", 30)
+             .text(d => d.team);
+    }
+
+    document.body.addEventListener("onload", createSoccerViz(), false);
+
 </script>
