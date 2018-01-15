@@ -44,7 +44,12 @@
                      .classed("inactive", false)
                      .classed("active", false)
              });
-
+            teamG.insert("image", "text")
+            .attr("xlink:href", d => `images/${d.team}.png`)
+            .attr("width", "45px")
+            .attr("height", "20px")
+            .attr("x", -22)
+            .attr("y", -10);
 
         function highlightRegion(d) {
             d3.selectAll("g.overallG").select("circle")
@@ -66,6 +71,17 @@
             var radiusScale = d3.scaleLinear().domain([0, maxValue]).range([2,20]);
             d3.selectAll("g.overallG").select("circle").attr("r", d => radiusScale(d[datapoint]));
         }
+
+
+        d3.text("html/infobox.html", html => {
+            d3.select("body").append("div").attr("id", "infobox").html(html)
+        })
+        teamG.on("click", teamClick)
+        function teamClick (d) {
+            d3.selectAll("td.data").data(d3.values(d))
+                .html(p => p)
+        }
+
     }
 
     document.body.addEventListener("onload", createSoccerViz(), false);
