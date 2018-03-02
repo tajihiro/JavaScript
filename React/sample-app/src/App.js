@@ -1,20 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import TodoInput from './TodoInput';
+import TodoList from './TodoList';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+      super(props);
+      console.log('App.constructor');
+      this.state = {
+          tasks: [
+          ],
+          uniqueId: 1,
+      };
+      //
+      this.addTodo = this.addTodo.bind(this);
+      this.resetTodo = this.resetTodo.bind(this);
+
+  };
+
+  addTodo(title){
+      console.log('addTodo');
+      const {tasks,
+             uniqueId,
+      } = this.state;
+      tasks.push({
+          title,
+          id: uniqueId,
+      });
+      this.setState({
+          tasks,
+          uniqueId: uniqueId + 1,
+      });
+  };
+
+  resetTodo(){
+      console.log('resetTodo');
+      this.setState({
+          tasks: []
+      });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">こんにちは。Blowfish!!!</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <input type="button" value={"成功" + "!!"}/>
-      </div>
+        <div>
+            <h3>TODO アプリ</h3>
+            <TodoInput addTodo={this.addTodo}/>
+            <TodoList tasks={this.state.tasks}/>
+            <button onClick={this.resetTodo}>リセット</button>
+        </div>
     );
   }
 }
