@@ -1,3 +1,82 @@
+
+
+
+<svg></svg>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="https://unpkg.com/topojson@3"></script>
+
 <script>
-    
+    var width = 1000;
+    var height = 750;
+    scale = 30000;
+    var svgContainer = d3.select("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var mapContainer = svgContainer.append("g").attr("class", "kumamoto");
+    var dataContainer = svgContainer.append("g").attr("class", "kumamoto");
+    var labelContainer = svgContainer.append("g").attr("class", "kumamoto");
+
+    var projection = d3.geoMercator()
+        // .center([139.8, 35.5]) //Tokyo
+//        .center([139.2, 36.5]) //Gumma
+        .center([130.8, 32.6]) //Kumamoto
+        .scale(scale)
+        .translate([width/2, height/2]);
+    var path = d3.geoPath(projection);
+
+    var q = d3.queue()
+//    q.defer(d3.json, "/data/tokyo.json")
+// q.defer(d3.json, "/data/gumma.json")
+   q.defer(d3.json, "/data/kumamoto.json")
+       .defer(d3.csv,  "/data/kumamoto_city.csv")
+        .await(mainFunc);
+
+
+//    function mainFunc(_error, _json){
+    function mainFunc(_error, _json, _cities){
+        mapContainer.selectAll("path")
+//            .data(topojson.feature(_json, _json.objects.tokyo).features)
+//            .data(topojson.feature(_json, _json.objects.gumma).features)
+            .data(topojson.feature(_json, _json.objects.kumamoto).features)
+            .enter()
+            .append("path")
+            .attr("stroke", "#d02345")
+            .attr("fill", "#ff9faa")
+            .attr("d", path);
+        dataContainer.selectAll("circle")
+            .data(_cities)
+            .enter()
+            .append('circle')
+            .attr('class', "pref")
+            .attr('id', function(d){
+                return d.city;
+            })
+            .attr('cx', function(d){
+//                console.log(d.latitude + ":" + d.longitude);
+                return projection([d.longitude, d.latitude])[0];
+            })
+            .attr('cy', function(d){
+                return projection([d.longitude, d.latitude])[1];
+            })
+            .attr('r', 2)
+            .style('fill', function(d){
+                return "#165dff";
+            })
+            .enter();
+        labelContainer.selectAll("text")
+            .data(_cities)
+            .enter()
+            .append('text')
+            .attr('dx', function(d){
+                return projection([d.longitude, d.latitude])[0];
+            })
+            .attr('dy', function(d){
+                return projection([d.longitude, d.latitude])[1];
+            })
+            .text(d => d.city)
+            .style('fill', "#000000")
+            .enter();
+    };
+
 </script>

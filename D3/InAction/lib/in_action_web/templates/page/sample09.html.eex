@@ -1,3 +1,26 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/topojson@3"></script>
 <script>
-    
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var projection = d3.geoMercator()
+        .center([130.6, 32.6])
+        .scale(22000)
+        .translate([width/2, height/2]);
+    var path = d3.geoPath(projection);
+
+    d3.json("/data/kumamoto.json", function(json) {
+        svg.selectAll("path")
+            .data(topojson.feature(json, json.objects.kumamoto).features)
+            .enter()
+            .append("path")
+            .attr("stroke", "#999999")
+            .attr("fill", "#c8fffa")
+            .attr("d", path);
+    })
+
 </script>
